@@ -50,6 +50,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                                           privileged: false
             override.vm.provision :shell, path: 'vagrant/install-datastax-enterprise_v1.sh',
                                           privileged: false
+            override.vm.provision :shell, path: 'vagrant/enable-spark.sh',
+                                          privileged: false
             override.vm.provision :shell, path: 'vagrant/install-bower_v1.sh',
                                           privileged: false
             override.vm.provision :shell, path: 'vagrant/start-datastax-enterprise_v1.sh',
@@ -87,6 +89,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             override.vm.provision :shell, path: 'vagrant/bootstrap-dev-environment_v1.sh',
                                           privileged: false
             override.vm.provision :shell, path: 'vagrant/install-datastax-enterprise_v1.sh',
+                                          privileged: false
+            override.vm.provision :shell, path: 'vagrant/enable-spark.sh',
                                           privileged: false
             override.vm.provision :shell, path: 'vagrant/install-bower_v1.sh',
                                           privileged: false
