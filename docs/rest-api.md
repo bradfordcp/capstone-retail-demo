@@ -4,9 +4,9 @@
 
 - [Rest API](#rest-api)
   - [cornerstone/flask/run](#cornerstoneflaskrun)
-  - [cornerstone/flask/DataStaxDemo/application.py](#cornerstoneflaskDataStaxDemoapplicationpy)
-  - [cornerstone/flask/DataStaxDemo/routes/rest.py](#cornerstoneflaskDataStaxDemoroutesrestpy)
-  - [cornerstone/flask/DataStaxDemo/routes/gcharts.py](#cornerstoneflaskDataStaxDemoroutesgchartspy)
+  - [cornerstone/flask/DataStaxDemo/application.py](#cornerstoneflaskdatastaxdemoapplicationpy)
+  - [cornerstone/flask/DataStaxDemo/routes/rest.py](#cornerstoneflaskdatastaxdemoroutesrestpy)
+  - [cornerstone/flask/DataStaxDemo/routes/gcharts.py](#cornerstoneflaskdatastaxdemoroutesgchartspy)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
