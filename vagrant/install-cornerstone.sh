@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo pip install -r /capstone/flask/DataStaxDemo/requirements.txt
+sudo pip install -r /cornerstone/flask/DataStaxDemo/requirements.txt
 
 CACHE=/cache/gviz_api_py
 if [ ! -d ${CACHE} ]; then
@@ -15,34 +15,20 @@ fi
 )
 
 (
-    cd /capstone/flask/DataStaxDemo
+    cd /cornerstone/flask/DataStaxDemo
     bower --config.analytics=false install
 )
 
-cqlsh 192.168.101.10 -f /capstone/cql/schema.cql
-
-# seed stable data
-/capstone/scripts/seed_retail_data/1.download-data.sh
-/capstone/scripts/seed_retail_data/2.data-to-cassandra.py
-
-# seed zipcode data
-cp /capstone/scripts/seed_zipcode_data/free-zipcode-database.csv /cache
-/capstone/scripts/seed_zipcode_data/1.zipcodes-to-cassandra.py
-
-# start webserver for register scan data
-/capstone/scripts/scan_data/1.extract-ids.py
-/capstone/scripts/scan_data/2.extract-zipcodes.py
-/capstone/scripts/scan_data/3.start-metagener.sh
-## /capstone/scripts/scan_data/4.metagener-to-cassandra.py
-
-CFG=/capstone/flask/DataStaxDemo/application.cfg
+CFG=/cornerstone/flask/DataStaxDemo/application.cfg
 if [ ! -f ${CFG} ]; then
     # copy the template to its real location
-    cp /capstone/flask/DataStaxDemo/application.cfg.template ${CFG}
+    cp /cornerstone/flask/DataStaxDemo/application.cfg.template ${CFG}
 
     # generate new secret key and DSE IP addresses
     SECRET_KEY=$(openssl rand -base64 48)
-    DSE_CLUSTER='192.168.101.10,192.168.101.11,192.168.101.12'
+
+#    DSE_CLUSTER='192.168.101.10,192.168.101.11,192.168.101.12'
+    DSE_CLUSTER='127.0.0.1'
 
     # make replacements
     sed -i -e "s/^SECRET_KEY.*/SECRET_KEY = '${SECRET_KEY}'/" ${CFG}
