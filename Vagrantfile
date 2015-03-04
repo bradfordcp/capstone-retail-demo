@@ -90,8 +90,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                                           privileged: false
             override.vm.provision :shell, path: 'vagrant/install-bower_v1.sh',
                                           privileged: false
-            # override.vm.provision :shell, path: 'vagrant/install-cornerstone.sh',
-            #                               privileged: false
+            override.vm.provision :shell, path: 'vagrant/install-cornerstone.sh',
+                                          privileged: false
             # override.vm.provision :shell, path: 'vagrant/start-cornerstone.sh',
             #                               privileged: false
         end
