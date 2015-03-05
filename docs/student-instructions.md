@@ -308,6 +308,18 @@ Add two new charts and submit a pull request to the Cornerstone project.
 
 ## Spark SQL
 
+### Instructions
+
+1. Spark worker memory: set to 8192 in spark-env.sh
+2. Increase max heap to 7500 MB in cassandra-env.sh
+3. Restart DSE
+4. Start the 4.xxx.sh as soon as possible, leave it running for 15 minutes, at
+minimum, prior to the start of the exercise.
+5. Bring up port 4040 and port 7080 on your browser, this will be monitoring
+metrics for Spark execution, for the remainder of your Spark related exercise.
+6. Checkout HiveContext (hc) and CassandraSQLContext (csc), and try each Context
+individually.
+
 ### Interactive Project: Find the Most Efficient Employee per Store
 
 > Target wants to start rewarding their fastest scanning employees through a
