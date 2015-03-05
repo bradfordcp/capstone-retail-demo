@@ -104,7 +104,42 @@ def populate_stores(futures, session):
     :return: None
     """
 
-    pass
+    rest_api = 'http://localhost:8080/bulksample/retail/retail.stores/'
+    batch_size = 1
+    endpoint = '%s%s' % (rest_api, batch_size)
+
+    store_insert_statement = session.prepare(
+        'INSERT INTO retail.stores (store_id, city, express_registers, full_registers, hours_close, '
+        'hours_exceptions, hours_open, phones, state, street, tax_rate, zipcode) '
+        'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
+    zipcode_select_statement = session.prepare(
+        'SELECT city, state FROM retail.zipcodes WHERE zipcode = ? LIMIT 1'
+    )
+
+    r = requests.get(endpoint).json()
+
+    for store in r['sampleValues']:
+        raw_values = store['fieldValues']
+
+        # Read city and state from Zip code table
+        rows = session.execute(zipcode_select_statement, [raw_values['zipcode']])
+
+        values = {
+            'store_id': int(raw_values['store_id']),
+            'city': rows[0]['city'],
+            'express_registers': int(raw_values['express_registers']),
+            'full_registers': int(raw_values['full_registers']),
+            'hours_close': None,
+            'hours_exceptions': None,
+            'hours_open': None,
+            'phones': None,
+            'state': rows[0]['state'],
+            'street': "{} {}".format(raw_values['street_no'], raw_values['street']).encode('utf-8'),
+            'tax_rate': Decimal(raw_values['tax_rate']),
+            'zipcode': raw_values['zipcode']
+        }
+
+        async_write_full_pipeline(futures, session, store_insert_statement, values)
 
 
 def populate_employees(futures, session):
@@ -118,6 +153,23 @@ def populate_employees(futures, session):
     rest_api = 'http://localhost:8080/bulksample/retail/retail.employees/'
     batch_size = 1
     endpoint = '%s%s' % (rest_api, batch_size)
+
+    employee_insert_statement = session.prepare(
+        'INSERT INTO retail.employees (employee_id, first_name, last_initial, last_name, store_id) '
+        'VALUES (?, ?, ?, ?, ?)')
+
+    r = requests.get(endpoint).json()
+
+    for employee in r['sampleValues']:
+        raw_values = employee['fieldValues']
+        values = {
+            'employee_id': int(raw_values['employee_id']),
+            'first_name': raw_values['first_name'],
+            'last_name': raw_values['last_name'],
+            'last_initial': raw_values['last_initial'],
+            'store_id': int(raw_values['store_id'])
+        }
+        async_write_full_pipeline(futures, session, employee_insert_statement, values)
 
 
 def main():
