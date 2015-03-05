@@ -312,7 +312,7 @@ Add two new charts and submit a pull request to the Cornerstone project.
 
 > Target wants to start rewarding their fastest scanning employees through a
 company-wide incentive program. Create a Spark job for them to be run monthly
-to find their newest Employees of the Month.
+to find their most efficient Employees of the Month.
 
 Follow an in-class presentation for how to setup, write, and execute Spark jobs.
 Write the resulting top performers into a Cassandra table for simple consumption
