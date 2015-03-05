@@ -118,6 +118,7 @@ def populate_employees(futures, session):
     rest_api = 'http://localhost:8080/bulksample/retail/retail.employees/'
     batch_size = 1
     endpoint = '%s%s' % (rest_api, batch_size)
+    response = requests.get(endpoint).json()
 
 
 def main():
