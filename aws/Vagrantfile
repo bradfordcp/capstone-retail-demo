@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder '.', '/vagrant', disabled: true
 
     # define the a single-machine setup machine
-    (0..20).each do |i|
+    (0..30).each do |i|
         config.vm.define "dev#{i}", autostart: true do |dev|
 
             dev.vm.provider :aws do |aws, override|
