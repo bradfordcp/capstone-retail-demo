@@ -17,6 +17,6 @@ SELECT COUNT(*) FROM retail.brands LIMIT 5000;
 hc.sql("SELECT * FROM retail.brands").count()
 ```
 
-```unix
-
+```bash
+zcat /cache/brands.txt.gz | cut -c12- | grep -v "^$" | sort | uniq | wc -l
 ```
