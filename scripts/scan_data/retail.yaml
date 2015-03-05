@@ -1,0 +1,14 @@
+preload:
+  retail: retail.metagener
+logging:
+  level: INFO
+  loggers:
+    com.metawiring: INFO
+  appenders:
+    - type: file
+      currentLogFilename: /cache/metagener-webapi.log
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: /cache/metagener-webapi-%d.log
+      archivedFileCount: 10
+      timeZone: UTC
