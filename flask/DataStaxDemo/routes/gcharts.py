@@ -73,6 +73,19 @@ def linechart():
                            options='google.charts.Line.convertOptions(options)')
 
 
+@gcharts_api.route('/curved_linechart/')
+def curved_linechart():
+    ajax_source = compose_ajax_source()
+
+    return render_template('gcharts/gcharts.jinja2',
+                           ajax_source=ajax_source,
+                           gcharts_version=1,
+                           packages='corechart',
+                           data_method='arrayToDataTable(jsonData.gcharts["1"])',
+                           chart_type='visualization.LineChart',
+                           options='{curveType: \'function\'}')
+
+
 @gcharts_api.route('/piechart/')
 def piechart():
     ajax_source = compose_ajax_source()
