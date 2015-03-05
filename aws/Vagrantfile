@@ -76,11 +76,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 override.vm.provision :shell, path: '../vagrant/install-datastax-enterprise_v1.sh',
                                               args: [ENV['DATASTAX_USER'], ENV['DATASTAX_PASSWORD']],
                                               privileged: false
+                override.vm.provision :shell, path: '../vagrant/enable-spark.sh',
+                                              privileged: false
+                override.vm.provision :shell, path: '../vagrant/aws-link-to-mnt.sh',
+                                              privileged: false
                 override.vm.provision :shell, path: '../vagrant/install-bower_v1.sh',
                                               privileged: false
                 override.vm.provision :shell, path: '../vagrant/start-datastax-enterprise_v1.sh',
-                                              privileged: false
-                override.vm.provision :shell, path: '../vagrant/enable-spark.sh',
                                               privileged: false
                 override.vm.provision :shell, path: '../vagrant/clone-cornerstone.sh',
                                               privileged: false

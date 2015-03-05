@@ -136,6 +136,7 @@ CREATE TABLE IF NOT EXISTS retail.registers (
     receipt_id timeuuid,
     scan_time timestamp,
 
+    scan_duration int,
     quantity decimal,
 
     brand text,

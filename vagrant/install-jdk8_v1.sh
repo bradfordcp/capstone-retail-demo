@@ -4,6 +4,7 @@ install-jdk ()
 {
     (
         CACHE=/cache/apt/webupd8team
+        echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
         echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
         sudo dpkg -i ${CACHE}/binutils*
         sudo dpkg -i ${CACHE}/oracle-java8-installer*
@@ -19,7 +20,7 @@ if [ ! -d ${CACHE} ]; then
     sudo add-apt-repository -y ppa:webupd8team/java
     sudo apt-get -y update
 
-    PACKAGES='oracle-java8-installer oracle-java8-set-default'
+    PACKAGES='oracle-java8-installer oracle-java7-installer oracle-java7-set-default'
     apt-get --print-uris --yes install $PACKAGES | grep ^\' | cut -d\' -f2 > ${CACHE}.list
     wget -c -i ${CACHE}.list -P ${CACHE}
 fi
@@ -28,7 +29,7 @@ CACHE=/cache/apt/jdk
 if [ ! -d ${CACHE} ]; then
     mkdir -p ${CACHE}
     install-jdk
-    cp /var/cache/oracle-jdk8-installer/jdk-* ${CACHE}
+    cp /var/cache/oracle-jdk*-installer/jdk-* ${CACHE}
 else
     INSTALLER_CACHE=/var/cache/oracle-jdk8-installer/
     sudo mkdir -p ${INSTALLER_CACHE}

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+mkdir -p /mnt/log/spark_streaming
+
 #cqlsh 192.168.101.10 -f /cornerstone/cql/schema.cql
 cqlsh 127.0.0.1 -f /cornerstone/cql/schema.cql
 
@@ -15,4 +17,5 @@ cp /cornerstone/scripts/seed_zipcode_data/free-zipcode-database.csv /cache
 /cornerstone/scripts/scan_data/1.extract-ids.py
 /cornerstone/scripts/scan_data/2.extract-zipcodes.py
 /cornerstone/scripts/scan_data/3.start-metagener.sh
-## /cornerstone/scripts/scan_data/4.metagener-to-cassandra.py
+/cornerstone/scripts/scan_data/4.metagener-to-cassandra-stores-employees.py
+# /cornerstonescripts/scan_data/5.metagener-to-cassandra-scan-items.py
