@@ -168,6 +168,37 @@ def parse_brands(futures, session):
     :return: None
     """
 
+    insert_brands_statement = session.prepare(
+        'INSERT INTO retail.brands (brand) '
+        'VALUES (?)')
+
+    with gzip.open('/cache/brands.txt.gz') as f:
+        # compile regular expressions
+        brand_regex = re.compile('^[A-Z0-9]{10} (.*)')
+
+        # setup loop variables
+        i = 0
+        update_rate = 10000
+        print 'Every outputted line denotes %s processed lines...' % update_rate
+        for line in iter(f.readline, ''):
+            # keep track of current progress
+            i += 1
+
+            # find brand name
+            match = re.match(brand_regex, line)
+            brand_name = match.group(1).decode('utf-8', 'ignore')
+
+            if len(brand_name) > 0:
+                values = {'brand': brand_name}
+                if i % update_rate == 0:
+                    # update the console on current progress
+                    print values
+
+                async_write_full_pipeline(futures, session,
+                                          insert_brands_statement, values)
+            else:
+                print("Found a blank line, ignoring")
+
 
 def main():
     # set Cassandra futures queue size
