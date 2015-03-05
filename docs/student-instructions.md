@@ -40,9 +40,9 @@ other DataStax Certified Partners. This is where you come in.
   - [Data Modeling](#data-modeling)
     - [Interactive Project: Create a Schema Using Customer Specifications](#interactive-project-create-a-schema-using-customer-specifications)
     - [Individual Project: Create a More Elaborate Schema and Proposal for Future Business](#individual-project-create-a-more-elaborate-schema-and-proposal-for-future-business)
+- [Day 2](#day-2)
   - [Cornerstone](#cornerstone)
     - [Interactive Project: Get the Cornerstone Running](#interactive-project-get-the-cornerstone-running)
-    - [Individual Project: Fix the Blatant Issue](#individual-project-fix-the-blatant-issue)
   - [Data Migration](#data-migration)
     - [Interactive Project: Read From a Static File into Cassandra](#interactive-project-read-from-a-static-file-into-cassandra)
     - [Individual Project: Read From Metagener (REST API) into Cassandra](#individual-project-read-from-metagener-rest-api-into-cassandra)
@@ -54,6 +54,9 @@ other DataStax Certified Partners. This is where you come in.
   - [Spark](#spark)
     - [Interactive Project: Find the Most Efficient Employee per Store](#interactive-project-find-the-most-efficient-employee-per-store)
     - [Individual Project: Choose Your Own Adventure](#individual-project-choose-your-own-adventure)
+- [Day 3](#day-3)
+  - [Presentation](#presentation)
+    - [Team Project: Present the Capstone](#team-project-present-the-capstone)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -173,8 +176,6 @@ since those pull requests must happen on the master infrastructure repo directly
 # Day 1
 
 
-
-
 ## Data Modeling
 
 ### Interactive Project: Create a Schema Using Customer Specifications
@@ -244,8 +245,9 @@ results would be useful, analytics would be run, and any other information
 that would be needed for a successful proposal.
 
 
+# Day 2
 
-
+From this point forward you will be working in pairs. Please pair off.
 
 ## Cornerstone
 
@@ -257,15 +259,8 @@ DataStax has provided the Cornerstone project to ease the development of new
 demos and POCs.
 
 > We'll cover a bit of the infrastructure and how to get the
-Cornerstone project running as well as how to contribute back into the DataStax
+Cornerstone project running, as well as how to contribute back into the DataStax
 Demo Portal.
-
-### Individual Project: Fix the Blatant Issue
-
-> Target is experiencing issues with their newly launched cluster.
-Fix the issue.
-
-
 
 
 
@@ -281,7 +276,7 @@ Read from a CSV file into Cassandra.
 ### Individual Project: Read From Metagener (REST API) into Cassandra
 
 > Target not only needs a POC for performance verification, but also something
-tangible towards their business model. Ensure you can generate the right type
+tangible for their business model. Ensure you can generate the right type
 and amount of data to convince them how powerful Cassandra is.
 
 Using Jonathan Shook's [Metagener](https://github.com/jshook/metagener) read
@@ -298,7 +293,7 @@ data from a REST API and efficiently write the data into DataStax Enterprise.
 sure your POC is able to effectively and efficiently display the requested
 information.
 
-Use the table view as as well as a chart view. In-class presentation will cover
+Use the table view and a chart view. An in-class presentation will cover
 the [REST API documenation](../rest-api.md) that touches on both the paging API
 as well as the integrated charts API.
 
@@ -348,3 +343,23 @@ a query, or set of queries, that can transform their data to the next level.
 Follow the previous example's foundation to build a unique set of queries that
 will be placed into their own Cassandra table for simple consumption through
 the charting infrastructure.
+
+# Day 3
+
+## Presentation
+
+### Team Project: Present the Capstone
+
+> Target expects their consultants to deliver top-notch documentation and
+a presentation that summarizes the approaches taken. This presentation should
+reflect the main selling points of Cassandra for Target's use case. In addition,
+it is crucial to leverage cutting-edge offerings, like Spark, that
+can provide Target real-time analytics with the native performance wins of a
+Cassandra system.
+
+For this presentation, assume you are presenting what you achieved to Target
+as a DataStax certified Partner. Think about what is most important for them to
+hear from you. Plan for the following:
+
+* A 30 minute presentation
+* Q&A of 10 minutes
