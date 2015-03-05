@@ -258,7 +258,7 @@ In order to help facilitate the DataStax Partner Network in building these demos
 DataStax has provided the Cornerstone project to ease the development of new
 demos and POCs.
 
-> We'll cover a bit of the infrastructure and how to get the
+We'll cover a bit of the infrastructure and how to get the
 Cornerstone project running, as well as how to contribute back into the DataStax
 Demo Portal.
 
@@ -306,29 +306,13 @@ Add two new charts and submit a pull request to the Cornerstone project.
 
 
 
-
 ## Spark SQL
-
-### Interactive Project: Chart the Items that Take the Longest to Scan
-
-> Target has their real-time Cassandra store, but also wants to have real-time
-insight for immediate business value. Help them understand which items may have
-faulty packages, or make themselves prone to harder scanning, thus reducing
-checkout efficiency.
-
-Create, execute, and script the process for executing the required Spark SQL
-query. Dump the top 20 results into the new table retail.longest_scan_times.
-
-
-
-
-## Spark
 
 ### Interactive Project: Find the Most Efficient Employee per Store
 
 > Target wants to start rewarding their fastest scanning employees through a
 company-wide incentive program. Create a Spark job for them to be run monthly
-to find their newest Employees of the Month.
+to find their most efficient Employees of the Month.
 
 Follow an in-class presentation for how to setup, write, and execute Spark jobs.
 Write the resulting top performers into a Cassandra table for simple consumption
