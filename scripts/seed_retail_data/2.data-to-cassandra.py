@@ -181,12 +181,15 @@ def parse_brands(futures, session):
         update_rate = 10000
         print 'Every outputted line denotes %s processed lines...' % update_rate
         for line in iter(f.readline, ''):
+            # Convert the line to UTF-8
+            line = line.decode('iso-8859-1').encode('utf-8')
+
             # keep track of current progress
             i += 1
 
             # find brand name
             match = re.match(brand_regex, line)
-            brand_name = match.group(1).decode('utf-8', 'ignore')
+            brand_name = match.group(1)
 
             if len(brand_name) > 0:
                 values = {'brand': brand_name}
