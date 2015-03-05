@@ -18,4 +18,4 @@ cp /cornerstone/scripts/seed_zipcode_data/free-zipcode-database.csv /cache
 /cornerstone/scripts/scan_data/2.extract-zipcodes.py
 /cornerstone/scripts/scan_data/3.start-metagener.sh
 /cornerstone/scripts/scan_data/4.metagener-to-cassandra-stores-employees.py
-# /cornerstonescripts/scan_data/5.metagener-to-cassandra-scan-items.py
+# /cornerstone/scripts/scan_data/5.metagener-to-cassandra-scan-items.py
