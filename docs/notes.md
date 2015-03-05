@@ -9,4 +9,14 @@ Next there were some issues with blank values being ingested. We added logic to 
 
 Finally we took on the task of data parity. Marc put together an awesome unix command to get a total count of valid, unique brand names. He then performed a count of all of the lines to compare with the count in Cassandra. We then compared this number to a COUNT query run in both ```cqlsh``` and ```spark```.
 
+```cql
+SELECT COUNT(*) FROM retail.brands LIMIT 5000;
+```
 
+```scala
+hc.sql("SELECT * FROM retail.brands").count()
+```
+
+```unix
+
+```
