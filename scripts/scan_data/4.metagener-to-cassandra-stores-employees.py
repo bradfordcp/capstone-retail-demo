@@ -104,7 +104,58 @@ def populate_stores(futures, session):
     :return: None
     """
 
-    pass
+    insert_store = session.prepare('''
+        INSERT INTO retail.stores
+            (store_id, tax_rate, express_registers, full_registers, street,
+            city, state, zipcode)
+        VALUES
+            (?, ?, ?, ?, ?, ?, ?, ?)''')
+
+    get_city_state = session.prepare('''
+        SELECT city, state FROM retail.zipcodes WHERE zipcode = ?''')
+
+    rest_api = 'http://localhost:8080/bulksample/retail/retail.stores/'
+    batch_size = 1000
+    endpoint = '%s%s' % (rest_api, batch_size)
+
+    for i in range(30):
+        response = requests.get(endpoint).json()
+        for sample in response['sampleValues']:
+            field_values = sample['fieldValues']
+
+            zipcode = field_values['zipcode']
+
+            while True:
+                try:
+                    zipcode_result = session.execute(get_city_state,
+                                                     {'zipcode': zipcode})
+                    break
+                except Exception:
+                    logger.exception('Operation failed:')
+                    time.sleep(2)
+
+            city = zipcode_result[0]['city']
+            state = zipcode_result[0]['state']
+
+            street_address = '%s %s' % (
+                field_values['street_no'], field_values['street'])
+
+            tax_rate = Decimal("{0:.4f}".format(field_values['tax_rate']))
+            if state in ['DE', 'MT', 'NH', 'OR']:
+                tax_rate = Decimal(0)
+
+            values = {
+                'store_id': int(field_values['store_id']),
+                'tax_rate': tax_rate,
+                'express_registers': int(field_values['express_registers']),
+                'full_registers': int(field_values['full_registers']),
+                'street': street_address,
+                'city': city,
+                'state': state,
+                'zipcode': zipcode
+            }
+
+            async_write_full_pipeline(futures, session, insert_store, values)
 
 
 def populate_employees(futures, session):
@@ -115,11 +166,30 @@ def populate_employees(futures, session):
     :return: None
     """
 
+    insert_employee = session.prepare('''
+        INSERT INTO retail.employees
+            (employee_id, store_id, first_name, last_name, last_initial)
+        VALUES
+            (?, ?, ?, ?, ?)''')
+
     rest_api = 'http://localhost:8080/bulksample/retail/retail.employees/'
-    batch_size = 1
+    batch_size = 10000
     endpoint = '%s%s' % (rest_api, batch_size)
-    response = requests.get(endpoint).json()
-    print response
+
+    for i in range(60):
+        response = requests.get(endpoint).json()
+        for sample in response['sampleValues']:
+            field_values = sample['fieldValues']
+
+            values = {
+                'employee_id': int(field_values['employee_id']),
+                'store_id': int(field_values['store_id']),
+                'first_name': field_values['first_name'],
+                'last_name': field_values['last_name'],
+                'last_initial': field_values['last_initial'],
+            }
+
+            async_write_full_pipeline(futures, session, insert_employee, values)
 
 
 def main():
