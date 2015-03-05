@@ -119,6 +119,7 @@ def populate_employees(futures, session):
     batch_size = 1
     endpoint = '%s%s' % (rest_api, batch_size)
     response = requests.get(endpoint).json()
+    print response
 
 
 def main():
