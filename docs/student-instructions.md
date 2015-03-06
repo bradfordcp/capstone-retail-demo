@@ -349,8 +349,8 @@ the charting infrastructure.
 a presentation that summarizes the approaches taken. This presentation should
 reflect the main selling points of DataStax Enterprise for Target's use case.
 In addition, it is crucial to leverage cutting-edge offerings, like Spark, that
-can provide Target real-time analytics with the native performance wins of a
-DSE system.
+can provide Target real-time analytics with the native performance wins of the
+DataStax Enterprise suite.
 
 For this presentation, assume you are presenting what you achieved to Target
 as a DataStax certified Partner. Think about what is most important for them to
