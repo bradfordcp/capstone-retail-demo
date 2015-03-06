@@ -20,6 +20,35 @@ def compose_ajax_source():
     return ajax_source
 
 
+def compose_realtime_ajax_source():
+    """
+    grab request GET variables to create new url
+    :return: ajax ready url
+    """
+    # grab url parameter, if available
+    url = request.args.get('url', '/api/paging/retail/sale_counts')
+
+    # pass all other parameters to ajax url
+    ajax_source = '%s?' % url
+    for k, v in request.args.iteritems():
+        if k != 'url':
+            ajax_source += '&%s=%s' % (k, v)
+
+    return ajax_source
+
+@gcharts_api.route('/realtime/')
+def realtime():
+    ajax_source = compose_realtime_ajax_source()
+
+    return render_template('gcharts/gcharts.jinja2',
+                           ajax_source=ajax_source,
+                           gcharts_version=1.1,
+                           packages='bar',
+                           data_method='DataTable(jsonData.gcharts[1.1])',
+                           chart_type='charts.Bar',
+                           options='google.charts.Bar.convertOptions(options)')
+
+
 @gcharts_api.route('/annotationchart/')
 def annotationchart():
     ajax_source = compose_ajax_source()
