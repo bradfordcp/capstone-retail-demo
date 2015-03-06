@@ -353,7 +353,7 @@ that can provide Target real-time analytics with the native performance wins of
 a DSE system.
 
 For this presentation, assume you are presenting what you achieved to Target
-as a DataStax certified Partner. Think about what is most important for them to
+as a DataStax Certified Partner. Think about what is most important for them to
 hear from you. Plan for the following:
 
 * A 30 minute presentation
