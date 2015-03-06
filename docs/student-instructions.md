@@ -356,6 +356,16 @@ For this presentation, assume you are presenting what you achieved to Target
 as a DataStax Certified Partner. Think about what is most important for them to
 hear from you. Plan for the following:
 
+**Logistics**
 * A 30 minute presentation
 * Q&A of 10 minutes
 * Every person in your group should present
+
+**Qualitative**
+* Present innovative ideas that can help push Target to the forefront of all
+their markets
+* Deliver your ideas with concision.
+
+**Grading**
+* You will graded on your ability to present as a DataStax Certified Consultant
+not your ability to summarize what you did.
