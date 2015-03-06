@@ -347,10 +347,10 @@ the charting infrastructure.
 
 > Target expects their consultants to deliver top-notch documentation and
 a presentation that summarizes the approaches taken. This presentation should
-reflect the main selling points of DSE for Target's use case. In addition,
-it is crucial to leverage cutting-edge offerings, like Spark, that
-can provide Target real-time analytics with the native performance wins of a
-DSE system.
+reflect the main selling points of DataStax Enterprise (DSE) for Target's use
+case. In addition, it is crucial to leverage cutting-edge offerings, like Spark,
+that can provide Target real-time analytics with the native performance wins of
+a DSE system.
 
 For this presentation, assume you are presenting what you achieved to Target
 as a DataStax certified Partner. Think about what is most important for them to
