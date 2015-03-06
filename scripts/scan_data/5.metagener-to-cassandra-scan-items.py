@@ -213,6 +213,22 @@ def _convert_time_to_uuid(time_arg, lowest_val=True, randomize=False):
                      version=1)
 
 
+def _request_from_metagener(endpoint):
+    """
+    Workaround for retrying requests to Metagener
+    :param endpoint: REST API endpoint
+    :return:
+    """
+
+    while True:
+        try:
+            return requests.get(endpoint).json()
+        except:
+            logger.exception(
+                'Error seen when reading from Metagener. Retrying..')
+            time.sleep(0.1)
+
+
 def scan_items(futures, session):
     """
     Read from Metagener REST API and save data to Cassandra
@@ -285,7 +301,7 @@ def scan_items(futures, session):
     while True:
         # at the beginning of each loop, after batch_size writes, maybe start
         # another register
-        response = requests.get(new_store).json()['fieldValues']
+        response = _request_from_metagener(new_store)['fieldValues']
         store_id = int(response['store_id'])
         max_registers = int(response['express_registers']) + \
                         int(response['full_registers'])
@@ -319,7 +335,7 @@ def scan_items(futures, session):
         spark_streaming = spark_streaming_header
 
         # grab a batch of item scans
-        response = requests.get(endpoint).json()
+        response = _request_from_metagener(endpoint)
         for sample in response['sampleValues']:
             field_values = sample['fieldValues']
 
@@ -378,8 +394,8 @@ def scan_items(futures, session):
                                           insert_future_itemscan, values)
             else:
                 # TODO: Handle payments correctly. Fill out payment map
-                employee = requests.get(get_employee).json()['fieldValues']
-                payment = requests.get(new_payment).json()['fieldValues']
+                employee = _request_from_metagener(get_employee)['fieldValues']
+                payment = _request_from_metagener(new_payment)['fieldValues']
                 values = {
                     'cashier_id': int(employee['employee_id']),
                     'cashier_first_name': employee['first_name'],
