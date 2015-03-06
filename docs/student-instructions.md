@@ -50,8 +50,7 @@ other DataStax Certified Partners. This is where you come in.
     - [Interactive Project: Display Charts Using the Cornerstone Infrastructure](#interactive-project-display-charts-using-the-cornerstone-infrastructure)
     - [Individual Project: Implement a New Google Chart](#individual-project-implement-a-new-google-chart)
   - [Spark SQL](#spark-sql)
-    - [Interactive Project: Chart the Items that Take the Longest to Scan](#interactive-project-chart-the-items-that-take-the-longest-to-scan)
-  - [Spark](#spark)
+    - [Instructions](#instructions)
     - [Interactive Project: Find the Most Efficient Employee per Store](#interactive-project-find-the-most-efficient-employee-per-store)
     - [Individual Project: Choose Your Own Adventure](#individual-project-choose-your-own-adventure)
 - [Day 3](#day-3)
@@ -359,3 +358,4 @@ hear from you. Plan for the following:
 
 * A 30 minute presentation
 * Q&A of 10 minutes
+* Every person in your group should present
